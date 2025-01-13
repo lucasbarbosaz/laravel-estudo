@@ -4,13 +4,7 @@
 
 <h1>Novo usuário</h1>
 
-@if ($errors->any()) <!-- errors é uma variável global do Laravel que contém os erros de validação -->
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-@endif
+<x-alert/> <!-- inclui o componente de alerta -->
 
 <form action="{{ route('users.store') }}" method="POST">
     @csrf() <!-- csrf é uma diretiva do blade que gera um token de segurança -->

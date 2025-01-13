@@ -5,10 +5,8 @@
 <h1>Usuários</h1>
 <a href="{{ route('users.create') }} ">Adicionar usuário</a>
 
-@if (session()->has('success')) <!-- session é uma variável global do Laravel que contém as mensagens de sessão -->
-    <p>{{ session('success') }}</p> 
-@endif
-    
+<x-alert/> <!-- inclui o componente de alerta -->
+
     <table>
         <thead>
             <tr>
