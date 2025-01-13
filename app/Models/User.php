@@ -16,7 +16,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    protected $fillable = [ //atributos que podem ser preenchidos em massa no banco de dados
         'name',
         'email',
         'password',
