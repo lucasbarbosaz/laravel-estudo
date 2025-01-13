@@ -6,6 +6,38 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Olá, {{ $user->name }}</h1>
+    <h1>Usuários</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($users as $user) <!-- forelse é basicamente um foreach porém com um tratamento se não tiver registros -->
+                <tr>
+                    <td>
+                        {{ $user->name }}
+                    </td>
+                    <td>
+                        {{ $user->email }}
+                    </td>
+                    <td>
+                        -
+                    </td>
+                </tr>
+            @empty <!-- caso não tenha encontrado nenhum registro -->
+                <tr>
+                    <td colspan="100">Nenhum usuário encontrado.</td>
+                </tr>
+            @endforelse <!-- finaliza o forelse -->
+        </tbody>
+    </table>
+
+    Total de registros: {{ $users->total() }}
+    Página atual: {{ $users->currentPage() }}
+    {{ $users->links() }} <!-- links() é um método que gera a paginação -->
 </body>
 </html>
