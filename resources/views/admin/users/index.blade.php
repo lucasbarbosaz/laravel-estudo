@@ -3,8 +3,12 @@
 @section('content') <!-- define o conteúdo que será incluído no layout padrão --> 
 
 <h1>Usuários</h1>
+<a href="{{ route('users.create') }} ">Adicionar usuário</a>
 
-    <a href="{{ route('users.create') }} ">Adicionar usuário</a>
+@if (session()->has('success')) <!-- session é uma variável global do Laravel que contém as mensagens de sessão -->
+    <p>{{ session('success') }}</p> 
+@endif
+    
     <table>
         <thead>
             <tr>
