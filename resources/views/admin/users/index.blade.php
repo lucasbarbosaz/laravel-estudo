@@ -25,7 +25,7 @@
                     {{ $user->email }}
                 </td>
                 <td>
-                    -
+                    <a href="{{ route('users.edit', $user->id) }}">Editar</a>
                 </td>
             </tr>
             @empty <!-- caso não tenha encontrado nenhum registro -->

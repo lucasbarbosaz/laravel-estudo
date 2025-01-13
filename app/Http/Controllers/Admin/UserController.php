@@ -28,4 +28,32 @@ class UserController extends Controller
             ->route('users.index')
             ->with('success', 'Usuário criado com sucesso!'); //with é uma sessão flash que exibe uma mensagem de sucesso após a criação do usuário
     }
+
+    public function edit (string $id) {
+
+        $user = User::find($id);
+
+        if(!$user) {
+            return redirect()->route('users.index')->with('message', 'Usuário não encontrado!');
+        }
+
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update (Request $request, string $id) {
+        $user = User::find($id);
+
+        if(!$user) {
+            return back()->with('message', 'Usuário não encontrado!');
+        }
+
+        $user->update($request->only([
+            'name',
+            'email'
+        ]));
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'Usuário atualizado com sucesso!');
+    }
 }
