@@ -1,14 +1,16 @@
 @extends('admin.layouts.app')
-@section('title', 'Editando o Usuário ' . $user->name) <!-- define o título da página que será incluído no layout padrão -->
+
+@section('title', 'Editar o Usuário')
+
 @section('content')
-
-<h1>Editar o usuário {{ $user->name }}</h1>
-
-<x-alert/> <!-- inclui o componente de alerta -->
-
-<form action="{{ route('users.update', $user->id) }}" method="POST">
-    @method('PUT') <!-- method é uma diretiva do blade que define o método HTTP que será utilizado -->
-    @include('admin.users.partials.form')
-</form>
-
+    @include('admin.users.partials.breadcrumb')
+    <div class="py-6">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4">
+            Editar o Usuário {{ $user->name }}
+        </h2>
+    </div>
+    <form action="{{ route('users.update', $user->id) }}" method="POST">
+        @method('put')
+        @include('admin.users.partials.form')
+    </form>
 @endsection
