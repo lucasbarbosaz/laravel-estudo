@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -81,6 +82,10 @@ class UserController extends Controller
 
         if (Auth::user()->id === $user->id) {
             return back()->with('message', 'Você não pode deletar a si mesmo!');            
+        }
+
+        if (Gate::denies('is-admin')) {
+            return back()->with('message', 'Você não tem permissão para deletar usuários!');
         }
 
         $user->delete();
